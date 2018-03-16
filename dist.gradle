@@ -98,7 +98,7 @@ uploadArchives {
         mavenDeployer {
             customizePom(pom, project)
             
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            repository(url: "https://nexus.dev.voicebase.com/nexus/content/repositories/releases/") {
                 authentication(userName: deployUsername(), password: deployPassword())
             }
             snapshotRepository(url: "https://nexus.dev.voicebase.com/nexus/content/repositories/snapshots/") {

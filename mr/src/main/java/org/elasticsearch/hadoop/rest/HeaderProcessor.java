@@ -259,9 +259,11 @@ public final class HeaderProcessor {
     private Optional<byte[]> body(HttpMethod request) throws IOException {
       if(request instanceof EntityEnclosingMethod){
         EntityEnclosingMethod method = (EntityEnclosingMethod) request;
-        try(ByteArrayOutputStream out = new ByteArrayOutputStream()){
-          method.getRequestEntity().writeRequest(out);
-          return Optional.of(out.toByteArray());
+        if (method.getRequestEntity() != null) {
+            try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+                method.getRequestEntity().writeRequest(out);
+                return Optional.of(out.toByteArray());
+            }
         }
       }
       return Optional.absent();
