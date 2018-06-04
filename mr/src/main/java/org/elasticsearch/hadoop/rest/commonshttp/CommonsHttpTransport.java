@@ -465,6 +465,8 @@ public class CommonsHttpTransport implements Transport, StatsAware {
             entityMethod.setRequestEntity(new BytesArrayRequestEntity(ba));
             entityMethod.setContentChunked(false);
         }
+        http.setRequestHeader("Host", httpInfo);
+        http.setRequestHeader("User-Agent", "Spark");
 
         headers.applyTo(http);
 
